@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CoAXs Registration Test Form</title>
+</head>
+
+<body>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+<form id="input-form" action="" method="POST" target="no-target">
+    <fieldset>
+      <label>What are your first-last name initials*</label>
+      <input id="initials" type="text" name="initials">
+    </fieldset>
+    <fieldset>
+      <label>Key in a latitude</label>
+      <input id="latitude" type="text" name="latitude">
+    </fieldset>
+    <fieldset>
+      <label>Key in a longitude</label>
+      <input id="longitude" type="text" name="longitude"/>
+    </fieldset>
+
+  <button id="form-submit" type="submit">SUBMIT</button>
+</form>
+
+<iframe src="#" id="no-target" name="no-target" style="visibility:hidden"></iframe>
+
+<script>
+    $('#input-form').one('submit',function(){
+        var initials = encodeURIComponent($('#initials').val());
+        var latitude = encodeURIComponent($('#latitude').val());
+        var longitude = encodeURIComponent($('#longitude').val());
+        var initialsCol = "entry.1710541390";
+        var latCol = "entry.1709971823";
+        var longCol = "entry.897103553";
+        
+        /*
+        var annotCol1
+        var latCol2
+        var longCol2        
+        var annotCol2
+        var latCol3
+        var longCol3       
+        var annotCol3
+        var latCol3
+        var longCol3        
+        var annotCol3
+        
+*/
+  
+        var baseURL = 'https://docs.google.com/forms/d/1PrYVTmEaW1UmN5Rx5121VpGnEDne0AT6UWcVzP6B2AE/formResponse?';
+        var submitRef = '&submit=Submit';
+        var submitURL = (baseURL + initialsCol + "=" + initials + "&" + latCol + "=" + latitude + "&" + longCol + "=" + longitude + submitRef);
+        console.log(submitURL);
+        $(this)[0].action=submitURL;
+        $('#input-name').addClass('active').val('Thank You!');
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
