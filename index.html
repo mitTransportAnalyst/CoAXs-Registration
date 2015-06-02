@@ -3,61 +3,169 @@
 <head>
     <meta charset="utf-8">
     <title>CoAXs Registration Test Form</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+
+    <style type="text/css">
+        #map_canvas {
+            width: 980px;
+            height: 500px;
+        }
+        
+        #current {
+            padding-top: 25px;
+        }
+
+    </style>
+
+
 </head>
 
 <body>
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <form id="input-form" action="" method="POST" target="no-target">
+        <fieldset>
+          <label>What are your first-last name initials*</label>
+          <input id="initials" type="text" name="initials">
+        </fieldset>
+        <fieldset>
+          <label>Key in a latitude</label>
+          <input id="latitude" type="text" name="latitude">
+        </fieldset>
+        <fieldset>
+          <label>Key in a longitude</label>
+          <input id="longitude" type="text" name="longitude"/>
+        </fieldset>
 
-<form id="input-form" action="" method="POST" target="no-target">
-    <fieldset>
-      <label>What are your first-last name initials*</label>
-      <input id="initials" type="text" name="initials">
-    </fieldset>
-    <fieldset>
-      <label>Key in a latitude</label>
-      <input id="latitude" type="text" name="latitude">
-    </fieldset>
-    <fieldset>
-      <label>Key in a longitude</label>
-      <input id="longitude" type="text" name="longitude"/>
-    </fieldset>
+      <button id="form-submit" type="submit">SUBMIT</button>
+    </form>
 
-  <button id="form-submit" type="submit">SUBMIT</button>
-</form>
+    <iframe src="#" id="no-target" name="no-target" style="visibility:hidden"></iframe>
 
-<iframe src="#" id="no-target" name="no-target" style="visibility:hidden"></iframe>
+    <div id='map_canvas'></div>
+    <div id="current">Nothing yet...</div>
 
-<script>
-    $('#input-form').one('submit',function(){
-        var initials = encodeURIComponent($('#initials').val());
-        var latitude = encodeURIComponent($('#latitude').val());
-        var longitude = encodeURIComponent($('#longitude').val());
-        var initialsCol = "entry.1710541390";
-        var latCol = "entry.1709971823";
-        var longCol = "entry.897103553";
+
+
+
+
+
+<!--     Form for Collecting Initials -->
+    <script>
+        $('#input-form').one('submit',function(){
+            var initials = encodeURIComponent($('#initials').val());
+            var latitude = encodeURIComponent($('#latitude').val());
+            var longitude = encodeURIComponent($('#longitude').val());
+            var initialsCol = "entry.1710541390";
+            var poi = JSON.stringify(markers);
+            var poiCol = "entry.1709971823";
+            
+            var latCol = "";
+            var longCol = "entry.897103553";
+
+            
+            /*
+            var annotCol1
+            var latCol2
+            var longCol2        
+            var annotCol2
+            var latCol3
+            var longCol3       
+            var annotCol3
+            var latCol3
+            var longCol3        
+            var annotCol3
+            
+            */
+      
+            var baseURL = 'https://docs.google.com/forms/d/1PrYVTmEaW1UmN5Rx5121VpGnEDne0AT6UWcVzP6B2AE/formResponse?';
+            var submitRef = '&submit=Submit';
+            var submitURL = (baseURL + initialsCol + "=" + initials + "&" + poiCol + "=" + poi + "&" + longCol + "=" + longitude + submitRef);
+            console.log(submitURL);
+            $(this)[0].action=submitURL;
+            $('#input-name').addClass('active').val('Thank You!');
+        });
+   
+     var markers = [];
+        function initialize() {
+           
+            var mapOptions = {
+              zoom: 12,
+              center: new google.maps.LatLng(42.3385, -71.0809),
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById('map_canvas'),
+                mapOptions);
+
+            google.maps.event.addListener(map, 'click', function(e) {
+              placeMarker(e.latLng, map);
+
+              markers.push({"lat": e.latLng.A, "lng": e.latLng.F });
+
+                console.log(markers);
+               
+            });
+
+        }
+
+        function placeMarker(position, map) {
+            var marker = new google.maps.Marker({
+              position: position,
+              map: map,
+              draggable: true
+            });
+            map.panTo(position);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    
+
+/*
+        function placeTraker() {
+           var markers = [];
+           document.addMarkerToMap(parameters, map) {
+             var params = parameters || {};
+             params.map = map;
+             var marker = new google.maps.Marker(params);
+             markers.push({ "object": marker, "lat": params.position.lat(), "long": params.position.lng() });
+             return marker;
+           };
+           document.getMarkers() {
+             return markers;
+           };
+        };*/
+
+
+
+       /* var map = new google.maps.Map(document.getElementById('map_canvas'), {
+            zoom: 12,
+            center: new google.maps.LatLng(42.3385, -71.0809),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var myMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(42.32873, -71.08575),
+            draggable: true
+        });
+
+        google.maps.event.addListener(myMarker, 'dragend', function (evt) {
+            document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
+                  
+        });
+
         
-        /*
-        var annotCol1
-        var latCol2
-        var longCol2        
-        var annotCol2
-        var latCol3
-        var longCol3       
-        var annotCol3
-        var latCol3
-        var longCol3        
-        var annotCol3
-        
-*/
-  
-        var baseURL = 'https://docs.google.com/forms/d/1PrYVTmEaW1UmN5Rx5121VpGnEDne0AT6UWcVzP6B2AE/formResponse?';
-        var submitRef = '&submit=Submit';
-        var submitURL = (baseURL + initialsCol + "=" + initials + "&" + latCol + "=" + latitude + "&" + longCol + "=" + longitude + submitRef);
-        console.log(submitURL);
-        $(this)[0].action=submitURL;
-        $('#input-name').addClass('active').val('Thank You!');
-    });
-</script>
+
+        google.maps.event.addListener(myMarker, 'dragstart', function (evt) {
+            document.getElementById('current').innerHTML = '<p>Currently dragging marker...</p>';
+        });
+
+        map.setCenter(myMarker.position);
+        myMarker.setMap(map);*/
+    </script>
+
 
 </body>
 </html>
