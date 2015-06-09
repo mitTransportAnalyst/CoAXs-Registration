@@ -13,6 +13,10 @@
     <!-- Latest compiled and minified JavaScript -->    
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
@@ -42,6 +46,14 @@
             margin-right: 10px;
         }
 
+        #dataVizSlider {
+          width: 300px;
+        }
+
+        #brtSlider {
+          width: 300px;
+        }
+
         .form-submit {
             position: 50%;
 
@@ -58,14 +70,13 @@
         <fieldset>
           <label>What are your first-last name initials*</label>
           <input id="initials" type="text" name="initials">
+           <br></br>
         </fieldset>
-        
-      <section>
 
         <fieldset>
-          <h4> YOUR BACKGROUND </h4>
+          <h4> 1. YOUR BACKGROUND </h4>
           <h5>If applicable, choose a field that most closely identify your background and interests</h5>
-          <ul>
+          <!-- <ul>
             <li>
               <label>
                 <input type="radio" id="pubPolicy" name="pubPolicy" value="pubPolicy" />
@@ -126,21 +137,54 @@
                 Others
               </label>
             </li>
-          </ul>
+          </ul> -->
+          <label for="background"></label>
+          <select name="background" id="background">
+            <option>Public Policy/Administration</option>
+            <option>Urban Planning</option>
+            <option>Non-Profit/Community Organization</option>
+            <option>Architecture</option>
+            <option>Education</option>
+            <option>Agriculture</option>
+            <option>Health Care</option>
+            <option>Technology / Media</option>
+            <option>Others</option>
+
+          </select>
+
+          <br></br>
+        
         </fieldset>
       
-        <h4> POINT-OF-INTERESTS </h4>
+        <h4> 2. POINT-OF-INTERESTS </h4>
         <fieldset>
           <label>Describe a place that matters to you and drop a marker on the map</label>
-          <input id="poiTag" type="text" name="poiTag">
+          <input id="poiTag" type="text" name="poiTag" required>
         </fieldset>
-      </section>
+  
 
       <div id='map_canvas'></div>
-      
-      <button id="form-submit" type="submit" >SUBMIT</button>
-    </form>
+      <br>
 
+      <h4> 3. PRIOR KNOWLEDGE </h4>
+
+      <label for="dataViz">On a 1-5 scale, how familiar are you with  data visualization and mapping?</label>
+      <input type="text" id="datavizValue" readonly style="border:0; color:#f6931f; font-weight:bold;">    
+      <div id="dataVizSlider"></div>
+
+      <br>
+
+      <label for="brtKnowledge">On a 1-5 scale, how familiar are you with  the concept of Bus Rapid Transit(BRT)?</label>
+      <input type="text" id="brtValue" readonly style="border:0; color:#f6931f; font-weight:bold;">  
+      
+      <div id="brtSlider"></div>
+      
+      <br>
+       <br>
+      <button id="form-submit" type="submit" >SUBMIT</button>
+      <br>
+      </form>
+      <br>
 
 <!--     Form for Collecting Initials -->
     <script>
@@ -163,7 +207,7 @@
             //var latCol = "";
             //var longCol = "entry.897103553";
 
-      
+       
             var baseURL = 'https://docs.google.com/forms/d/1PrYVTmEaW1UmN5Rx5121VpGnEDne0AT6UWcVzP6B2AE/formResponse?';
             var submitRef = '&submit=Submit';
             var submitURL = (baseURL + initialsCol + "=" + initials + "&" + poiCol + "=" + poi + "&" + submitRef);
@@ -202,6 +246,31 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     
+      $(function() {
+        $( "#dataVizSlider" ).slider({
+          value:3,
+          min: 1,
+          max: 5,
+          step: 1,
+          slide: function( event, ui ) {
+            $( "#amount" ).val( ui.value );
+          }
+        });
+        $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
+      });
+
+      $(function() {
+        $( "#brtSlider" ).slider({
+          value:3,
+          min: 1,
+          max: 5,
+          step: 1,
+          slide: function( event, ui ) {
+            $( "#amount" ).val( ui.value );
+          }
+        });
+        $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
+      });
 
     </script>
 
