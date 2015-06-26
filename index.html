@@ -6,6 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link href="https://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,800,600' rel='stylesheet' type='text/css'>
 
     <!-- Optional theme -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
@@ -25,6 +26,8 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 
     <style type="text/css">
+        
+
         #map_canvas {
             position: ;
             width: 100%;
@@ -44,6 +47,12 @@
         body {
             margin-left: 10px;
             margin-right: 10px;
+            background-color: yellow;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        h3 {
+            font-weight: 300;
         }
 
         #dataVizSlider {
@@ -54,9 +63,13 @@
           width: 300px;
         }
 
-        .form-submit {
+        #form-submit {
             position: 50%;
-
+            font-weight: 300;
+            font-size: 1.5em;
+            background-color: gray;
+            color: none;
+            border-style: none;
         }
 
     </style>
@@ -65,17 +78,18 @@
 </head>
 
 <body>
-    <h2>Help us know you better</h2>  
+    <h3>Welcome to the <strong>BostonBRT</strong> Planning Workshop (Beta)</h3>
+    <h2>Help us know you better.</h2>  
     <form id="input-form" action="" method="POST" target="no-target">
         <fieldset>
-          <label>What are your first-last name initials*</label>
-          <input id="initials" type="text" name="initials">
+          <h4>What are your first-last name initials?</h4>
+          <input id="initials" type="text" name="initials" style="width: 70px">
            <br></br>
         </fieldset>
 
         <fieldset>
-          <h4> 1. YOUR BACKGROUND </h4>
-          <h5>If applicable, choose a field that most closely identify your background and interests</h5>
+          <h3> 1. YOUR BACKGROUND </h3>
+          <h4>If applicable, choose a field that most closely identify your background and interests</h4>
           <!-- <ul>
             <li>
               <label>
@@ -156,32 +170,34 @@
         
         </fieldset>
       
-        <h4> 2. POINT-OF-INTERESTS </h4>
+        <h3> 2. POINT-OF-INTERESTS </h3>
         <fieldset>
-          <label>Describe a place that matters to you and drop a marker on the map</label>
-          <input id="poiTag" type="text" name="poiTag" required>
+          <h4>Describe a few places that matter to you and drop a marker for each on the map</h4>
+          <input style="width: 230px" id="poiTag" type="text" name="poiTag" required>
         </fieldset>
   
 
       <div id='map_canvas'></div>
       <br>
 
-      <h4> 3. PRIOR KNOWLEDGE </h4>
+      <h3> 3. PRIOR KNOWLEDGE  <small>(Sample Questions) </small></h3>
 
-      <label for="dataViz">On a 1-5 scale, how familiar are you with  data visualization and mapping?</label>
-      <input type="text" id="datavizValue" readonly style="border:0; color:#f6931f; font-weight:bold;">    
+      <h4 for="dataViz"> On a 1-5 scale, how familiar are you with  data visualization and mapping?</h4> <br>
+      <!-- <input type="text" id="datavizValue" readonly style="border:0; color:#f6931f; font-weight:bold;">     -->
       <div id="dataVizSlider"></div>
 
       <br>
 
-      <label for="brtKnowledge">On a 1-5 scale, how familiar are you with  the concept of Bus Rapid Transit(BRT)?</label>
-      <input type="text" id="brtValue" readonly style="border:0; color:#f6931f; font-weight:bold;">  
+      <h4 for="brtKnowledge">On a 1-5 scale, how familiar are you with  the concept of Bus Rapid Transit(BRT)?</h4> <br>
+      <!-- <input type="text" id="brtValue" readonly style="border:0; color:#f6931f; font-weight:bold;">   -->
       
       <div id="brtSlider"></div>
       
       <br>
        <br>
-      <button id="form-submit" type="submit" >SUBMIT</button>
+      <span class="badge"> 
+        <button id="form-submit" type="submit" >SUBMIT</button>
+      </span>
       <br>
       </form>
       <br>
