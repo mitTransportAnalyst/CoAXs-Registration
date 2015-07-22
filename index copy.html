@@ -7,16 +7,14 @@
     <meta charset="utf-8">
     <link href="https://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,800,600' rel='stylesheet' type='text/css'>
-
-    <!-- Optional theme -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
- -->
+ 
     <!-- Latest compiled and minified JavaScript -->    
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
@@ -90,68 +88,7 @@
         <fieldset>
           <h3> 1. YOUR BACKGROUND </h3>
           <h4>If applicable, choose a field that most closely identify your background and interests</h4>
-          <!-- <ul>
-            <li>
-              <label>
-                <input type="radio" id="pubPolicy" name="pubPolicy" value="pubPolicy" />
-                Public Policy / Administration
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" id="urbPlanning" name="urbPlanning" value="urbPlanning" />
-                Urban Planning
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" id="transPlanning" name="transPlanning" value="transPlanning" />
-                Transportation Planning
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" id="arch" name="arch" value="arch" />
-                Architecture
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" id="education" name="education" value="education" />
-                Education
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" id="healthCare" name="healthCare" value="healthCare" />
-                Healthcare
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" id="agriculture" name="agriculture" value="agriculture" />
-                Agriculture
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" id="service" name="service" value="service" />
-                Service Industry
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" id="techMedia" name="techMedia" value="techMedia" />
-                Technology / Media
-              </label>
-            </li>
-            <li>
-              <label>
-                <input type="radio" id="otherFields" name="otherFields" value="otherFields" />
-                Others
-              </label>
-            </li>
-          </ul> -->
+
           <label for="background"></label>
           <select name="background" id="background">
             <option>Public Policy/Administration</option>
@@ -170,12 +107,55 @@
         
         </fieldset>
       
-        <h3> 2. POINT-OF-INTERESTS </h3>
+        <h3> 2. PLACES YOU GO TO </h3>
         <fieldset>
-          <h4>Describe a few places that matter to you and drop a marker for each on the map</h4>
-          <input style="width: 230px" id="poiTag" type="text" name="poiTag" required>
+        <h4>Locate places that matter to you and drop a marker for each on the map</h4>
+        <label> Places: </label>
+        <div class="btn-group" id="btn-group"  role="group" aria-label="...">
+          <input type="button" class="btn btn-default poi" value="home">
+          <input type="button" class="btn btn-default poi" value="work">
+          <input type="button" class="btn btn-default poi" value="shop">
+          <input type="button" class="btn btn-default poi" value="school">
+          <input type="button" class="btn btn-default poi" value="friends">
+          <input type="button" class="btn btn-default poi" value="family">
+          <input type="button" class="btn btn-default poi" value="leisure">
+          <input type="button" class="btn btn-default poi" value="doctor">
+        </div>
+        <br>
+        <label> Typical Time: </label>
+        <div class="btn-group 2" id="btn-group"  role="group2" aria-label="...">
+          <input type="button" class="btn btn-default time" value="morning or afternoon">
+          <input type="button" class="btn btn-default time" value="mid-day">
+          <input type="button" class="btn btn-default time" value="night">
+          <input type="button" class="btn btn-default time" value="weekend">
+        </div>
+        <br>
+        <label> Transit Method: </label>
+        <div class="btn-group" id="btn-group"  role="group3" aria-label="...">
+          <input type="button" class="btn btn-default mode" value="train/bus">
+          <input type="button" class="btn btn-default mode" value="car">
+          <input type="button" class="btn btn-default mode" value="bicycle">
+          <input type="button" class="btn btn-default mode" value="foot">
+        </div>
+        <br>
+        <label> Usual Travel Time: </label>
+        
+        <div>
+        <input type="range" min:10, max:120, step=10, style="width: 230px" class="duration"> 
+        </div>
+       <!--  <input style="width: 230px" id="poiTag" type="text" name="poiTag"> -->
+        <br>
+        
+        <label> What's challenging about the journey? </label>  
+        <input style="width: 530px" id="painTag" type="text" name="painTag">
+        <br> 
+        <label> Drop a pin on the map, or enter an address: </label>
+        <input style="width: 530px" id="addressTag" type="text" name="addressTag">
+
+
         </fieldset>
-  
+       
+      
 
       <div id='map_canvas'></div>
       <br>
@@ -202,22 +182,22 @@
       </form>
       <br>
 
-<!--     Form for Collecting Initials -->
+<!-- Form Script -->
+      
     <script>
         $('#input-form').one('submit',function(){
-            var initials = encodeURIComponent($('#initials').val());
-            var latitude = encodeURIComponent($('#latitude').val());
-            var longitude = encodeURIComponent($('#longitude').val());
             
-
+            // var latitude = encodeURIComponent($('#latitude').val());
+            // var longitude = encodeURIComponent($('#longitude').val());
+            
             var background = encodeURIComponent($('#background').val());
-            var poiTag = encodeURIComponent($('#poiTag').val());
+                    
+            // var poiTag = encodeURIComponent($('#poiTag').val());
 
+            var initials = encodeURIComponent($('#initials').val());
             var initialsCol = "entry.1710541390";
             
-
             var poi = JSON.stringify(markers);
-            
             var poiCol = "entry.1709971823";
             
             //var latCol = "";
@@ -231,8 +211,15 @@
             $(this)[0].action=submitURL;
             $('#input-name').addClass('active').val('Thank You!');
         });
-   
+    
+
+     var poiTag = [];
+     var timeTag = [];
+     var durationTag = [];
+     var modeTag = [];
+     var painTag = [];
      var markers = [];
+
         function initialize() {
             var mapOptions = {
               zoom: 13,
@@ -242,10 +229,38 @@
             var map = new google.maps.Map(document.getElementById('map_canvas'),
                 mapOptions);
 
+            $('.poi').click(function() {
+                poiTag = this.value;
+                console.log('button clicked', this.value);
+              });
+
+            $('.time').click(function() {
+                timeTag = this.value;
+                console.log('button clicked', this.value);
+              });
+
+            $('.mode').click(function() {
+                modeTag = this.value;
+                console.log('button clicked', this.value);
+              });
+
+            // $('.duration').onchange(function() {
+            //     durationTag = this.value;
+            //     console.log('button clicked', this.value);
+            //   });
+
+            // $('.pain').(function() {
+            //     painTag = this.value;
+            //     console.log('button clicked', this.value);
+            //   });
+
+
             google.maps.event.addListener(map, 'click', function(e) {
               placeMarker(e.latLng, map);
+              
+              // markers.push({"lat": e.latLng.A, "lng": e.latLng.F, "poiTag": $("#poiTag").val()});
 
-              markers.push({"lat": e.latLng.A, "lng": e.latLng.F, "poiTag": $("#poiTag").val()});
+              markers.push({"lat": e.latLng.A, "lng": e.latLng.F, "poiTag": poiTag, "timeTag": timeTag, "modeTag": modeTag});
 
                 console.log(markers);
             });
@@ -262,6 +277,15 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     
+
+      // $('.btn').click(function() {
+      //   var btnTag = this.value;
+      //   console.log('button clicked', this.value);
+
+      // });
+
+     
+
       $(function() {
         $( "#dataVizSlider" ).slider({
           value:3,
