@@ -85,15 +85,27 @@
     <form class="form-horizontal" id="input-form" action="" method="POST" target="no-target">
         
         <div class="form-group form-group-lg">
-          <label class="col-sm-4 control-label" for="formGroupInputLarge">Please choose two alphabets to represent your map marker?</label>
+          <label class="col-sm-3 control-label" for="formGroupInputLarge">Please choose two alphabets to represent your map marker?</label>
           <div class="col-sm-2">    
             <input class="form-control" id="initials" type="text" name="initials" >
           </div>
         </div>
 
+    <div class="form-group form-group-lg">
+        <label class="col-sm-3 control-label" for="formGroupInputLarge">Age Group:</label>
+        <div class="col-sm-8">  
+        <div class="" id="btn-group"  role="group3" aria-label="...">
+          <input type="button" class="btn btn-primary btn-lg  mode" value="15-24">
+          <input type="button" class="btn btn-primary btn-lg  mode" value="25-44">
+          <input type="button" class="btn btn-primary btn-lg  mode" value="45-64">
+          <input type="button" class="btn btn-primary btn-lg  mode" value="65+">
+        </div>
+      </div>
+    </div>
+
       
         <div class="form-group form-group-lg">
-          <label class="col-sm-4 control-label" for="formGroupInputLarge">If applicable, choose a field that most closely identifies your background and interests?</label>
+          <label class="col-sm-3 control-label" for="formGroupInputLarge">Occupation:</label>
           <div class="col-sm-6">    
             <label for="background"></label>
             <select class="form-control input-lg" name="background" id="background">
@@ -159,7 +171,7 @@
         </div>
 
         <div class="form-group form-group-lg">
-          <label class="col-sm-2 control-label" for="formGroupInputLarge">Usual Travel Time:</label>
+          <label class="col-sm-2 control-label" for="formGroupInputLarge">Usual Travel Time from Home:</label>
             <div class="col-sm-8">
                 <input type="button" class="btn btn-warning btn-lg  mode" value="<15min">
                 <input type="button" class="btn btn-warning btn-lg  mode" value="15~30min">
@@ -190,25 +202,30 @@
       <br>
 
       <h3> 3. PRIOR KNOWLEDGE  <small>(Sample Questions) </small></h3>
-
-      <h4 for="dataViz"> On a 1-5 scale, how familiar are you with the following activities or concepts? </h4> <br>
+      <br>
+      <h4 for="dataViz"> Bus Rapid Transit (BRT) and Data Visualization </h4> <br>
       
       
         <div class="form-group form-group-lg">
-          <label class="col-sm-4">Bus Rapid Transit</label>
+          <label class="col-sm-4">On a scale of 1-5, how familiar are you with digital graphical representation of information and data?</label>
           <div class="col-sm-6"> 
             <input class="" id="" type="range">
           </div>
         </div>    
 
         <div class="form-group form-group-lg">
-          <label class="col-sm-4">Accessibility (e.g.  ) </label>
+          <label class="col-sm-4">Are you familiar with the concept of Bus Rapid Transit (yes/no) ?  if so, name four components. </label>
           <div class="col-sm-6"> 
-            <input class="" id="" type="range">
-          </div>
-        </div>
+             <input type="button" class="btn btn-warning btn-lg  mode" value="Yes">
+             <input type="button" class="btn btn-warning btn-lg  mode" value="No">
+             <br>         
+             <input class="form-control" id="initials" type="text" name="initials"  >
 
-        <div class="form-group form-group-lg">
+          </div>
+          </div>
+        </div>    
+
+    <!--     <div class="form-group form-group-lg">
           <label class="col-sm-4">Reading Maps</label>
           <div class="col-sm-6"> 
             <input class="" id="" type="range">
@@ -227,20 +244,39 @@
           <div class="col-sm-6"> 
             <input class="" id="" type="range">
           </div>
-        </div>
+        </div> -->
  
 
       <br>
 
-      <h4 for="dataViz"> On a 1-5 scale, how much do you agree with the following statements?</h4> <br>
+      <h4 for="dataViz"> COMMUNITY MEETINGS</h4> <br>
 
         <div class="form-group form-group-lg">
-          <label class="col-sm-4">I believe that community meetings are helpful for learning about decisions made for the city/neighborhood.</label>
+          <label class="col-sm-4" for="formGroupInputLarge">Over the past year, how many community meetings have you attended?</label>
+            <div class="col-sm-8">
+                <input type="button" class="btn btn-warning btn-lg  mode" value="None">
+                <input type="button" class="btn btn-warning btn-lg  mode" value="1~3">
+                <input type="button" class="btn btn-warning btn-lg  mode" value="3~10">
+                <input type="button" class="btn btn-warning btn-lg  mode" value=">10">         
+          </div>
+        </div>
+         <div class="form-group form-group-lg">
+          <label class="col-sm-4" for="formGroupInputLarge">Of the community meetings you attended, in how many you spoke and shared your opinion?</label>
+            <div class="col-sm-8">
+                <input type="button" class="btn btn-warning btn-lg  mode" value="None">
+                <input type="button" class="btn btn-warning btn-lg  mode" value="1~3">
+                <input type="button" class="btn btn-warning btn-lg  mode" value="3~10">
+                <input type="button" class="btn btn-warning btn-lg  mode" value=">10">         
+          </div>
+        </div>
+        <br>
+        <div class="form-group form-group-lg">
+          <label class="col-sm-4 ">On a scale of 1-5, to what extent do you agree that community meetings are a venue for constructive discussions?</label>
           <div class="col-sm-6"> 
             <input class="" id="" type="range">
           </div>
         </div>
-
+<!-- 
         <div class="form-group form-group-lg">
           <label class="col-sm-4">I believe that community meetings are a venue for constructive discussion about planning decisions.</label>
           <div class="col-sm-6"> 
@@ -253,7 +289,7 @@
           <div class="col-sm-6"> 
             <input class="" id="" type="range">
           </div>
-        </div>
+        </div> -->
 
         <br>
         <br>
@@ -341,9 +377,10 @@
             google.maps.event.addListener(map, 'click', function(e) {
               placeMarker(e.latLng, map);
               
+              console.log(e.latLng);
               // markers.push({"lat": e.latLng.A, "lng": e.latLng.F, "poiTag": $("#poiTag").val()});
 
-              markers.push({"lat": e.latLng.A, "lng": e.latLng.F, "poiTag": poiTag, "timeTag": timeTag, "modeTag": modeTag});
+              markers.push({"lat": e.latLng.G, "lng": e.latLng.K, "poiTag": poiTag, "timeTag": timeTag, "modeTag": modeTag});
 
                 console.log(markers);
             });
