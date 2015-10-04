@@ -28,10 +28,9 @@
 
         #map_canvas {
             position: ;
-            width: 75%;
-            height: 500px;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            width: 90%;
+            height: 400px;
+            margin: 10px;
         }
         
         #current {
@@ -41,6 +40,10 @@
         ul {
             list-style-type: none;
         }
+		
+		.btn-group{
+		   white-space: normal;
+		}
 
         body {
             margin-left: 10px;
@@ -53,21 +56,15 @@
             font-weight: 300;
         }
 
-        #dataVizSlider {
-          width: 300px;
-        }
-
-        #brtSlider {
-          width: 300px;
-        }
-
         #form-submit {
             position: 50%;
+			width: 50%;
             font-weight: 300;
             font-size: 1.5em;
             background-color: gray;
             color: none;
             border-style: none;
+			margin: 10px;
         }
 
     </style>
@@ -76,41 +73,45 @@
 </head>
 
 <body>
-    
+	
+	<div style="position: absolute; bottom: 0px; width: 98%; padding-left: 40px">
     <form class="form-horizontal" id="input-form" action="" method="POST" target="no-target">
-        
-        <div class="form-group form-group-lg" style="padding:10px">
-          <label class="col-sm-1 control-label" for="formGroupInputLarge" style="text-align:left">Initials:</label>
-          <div class="col-sm-2">    
-            <input class="form-control" id="initials" type="text" name="initials" >
-          </div>
-        </div>
-      <div class="form-group form-group-lg" style="padding:10px">
-       <label class="col-sm-1 control-label" for="formGroupInputLarge" style="text-align:left">Places:</label>
-        <div class="col-sm-10">     
-        <div class="" id="btn-group"  role="group" aria-label="...">
-          <input type="button" class="btn btn-success btn-lg poi" value="HOME">
-          <input type="button" class="btn btn-success btn-lg poi" value="WORK">
-          <input type="button" class="btn btn-success btn-lg poi" value="SHOPPING">
-          <input type="button" class="btn btn-success btn-lg poi" value="SCHOOL">
-          <input type="button" class="btn btn-success btn-lg poi" value="RECREATION">
-          <input type="button" class="btn btn-success btn-lg poi" value="HEALTHCARE">
-        </div>
-        </div>
-        </div>
 
-  
-      <div id='map_canvas'></div>
-      <br>
-
+		<div class="form-group form-group-lg">
+			<label>Enter Initials:</label>
+			<div class="col-sm-12">	    
+				<input class="form-control" id="initials" type="text" name="initials" maxlength="2" size="2" style="width: 80px; text-transform: uppercase">
+			</div>
+		</div>
       
-      <span> 
-        <button id="form-submit" class="btn btn-lg btn-success btn-block" type="submit" style="width:75%">SUBMIT</button>
-      </span>
-      
+	  
+		<div class="form-group form-group-lg">
+			<label>Tap a place type:</label>
+			<div class="col-sm-12">
+				<div class="" id="btn-group"  role="group" aria-label="...">
+					<input type="button" class="btn btn-success btn-lg poi" value="HOME">
+					<input type="button" class="btn btn-success btn-lg poi" value="WORK">
+					<input type="button" class="btn btn-success btn-lg poi" value="SHOPPING">
+					<input type="button" class="btn btn-success btn-lg poi" value="SCHOOL">
+					<input type="button" class="btn btn-success btn-lg poi" value="RECREATION">
+					<input type="button" class="btn btn-success btn-lg poi" value="HEALTHCARE">
+				</div>
+			</div>
+		</div>
+	
+		<div class="form-group form-group-lg">
+			<label>Drop a marker on the map:</label>
+			<div id='map_canvas'></div>
+    	</div>
+	  
+		<div class="form-group form-group-lg">
+			<label>Repeat for a few places.  Once you're done: </label>
+			<button id="form-submit" class="btn btn-lg btn-success btn-block" type="submit">SUBMIT</button>
+		</div>
 
-      </form>
-      <br>
+    </form>
+	</div>
+	  
 
 <!-- Form Script -->
       
@@ -154,7 +155,8 @@
             var mapOptions = {
               zoom: 13,
               center: new google.maps.LatLng(42.3385, -71.0809),
-              mapTypeId: google.maps.MapTypeId.ROADMAP
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+			  scrollwheel: false
             };
             var map = new google.maps.Map(document.getElementById('map_canvas'),
                 mapOptions);
