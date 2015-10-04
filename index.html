@@ -28,10 +28,9 @@
 
         #map_canvas {
             position: ;
-            width: 100%;
-            height: 500px;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            width: 90%;
+            height: 400px;
+            margin: 10px;
         }
         
         #current {
@@ -41,6 +40,10 @@
         ul {
             list-style-type: none;
         }
+		
+		.btn-group{
+		   white-space: normal;
+		}
 
         body {
             margin-left: 10px;
@@ -53,21 +56,15 @@
             font-weight: 300;
         }
 
-        #dataVizSlider {
-          width: 300px;
-        }
-
-        #brtSlider {
-          width: 300px;
-        }
-
         #form-submit {
             position: 50%;
+			width: 50%;
             font-weight: 300;
             font-size: 1.5em;
             background-color: gray;
             color: none;
             border-style: none;
+			margin: 10px;
         }
 
     </style>
@@ -76,230 +73,45 @@
 </head>
 
 <body>
-    <h3>Welcome to the <strong>BostonBRT</strong> Planning Workshop (Beta)</h3>
-    <h2>Help us know you better.</h2>  
-    <br>
-
-    <h3> 1. YOUR BACKGROUND </h3>
-
+	
+	<div style="position: absolute; bottom: 0px; width: 98%; padding-left: 40px">
     <form class="form-horizontal" id="input-form" action="" method="POST" target="no-target">
-        
-        <div class="form-group form-group-lg">
-          <label class="col-sm-3 control-label" for="formGroupInputLarge">Please choose two alphabets to represent your map marker?</label>
-          <div class="col-sm-2">    
-            <input class="form-control" id="initials" type="text" name="initials" >
-          </div>
-        </div>
 
-    <div class="form-group form-group-lg">
-        <label class="col-sm-3 control-label" for="formGroupInputLarge">Age Group:</label>
-        <div class="col-sm-8">  
-        <div class="" id="btn-group"  role="group3" aria-label="...">
-          <input type="button" class="btn btn-primary btn-lg  mode" value="15-24">
-          <input type="button" class="btn btn-primary btn-lg  mode" value="25-44">
-          <input type="button" class="btn btn-primary btn-lg  mode" value="45-64">
-          <input type="button" class="btn btn-primary btn-lg  mode" value="65+">
-        </div>
-      </div>
-    </div>
-
+		<div class="form-group form-group-lg">
+			<label>Enter Initials:</label>
+			<div class="col-sm-12">	    
+				<input class="form-control" id="initials" type="text" name="initials" maxlength="2" size="2" style="width: 80px; text-transform: uppercase">
+			</div>
+		</div>
       
-        <div class="form-group form-group-lg">
-          <label class="col-sm-3 control-label" for="formGroupInputLarge">Occupation:</label>
-          <div class="col-sm-6">    
-            <label for="background"></label>
-            <select class="form-control input-lg" name="background" id="background">
-              <option>Public Policy/Administration</option>
-              <option>Urban Planning</option>
-              <option>Non-Profit/Community Organization</option>
-              <option>Architecture</option>
-              <option>Education</option>
-              <option>Agriculture</option>
-              <option>Health Care</option>
-              <option>Technology / Media</option>
-              <option>Others</option>
-            </select>
-          </div>
-         </div>
-      
-        <br>
-        
-        
-        <h3> 2. PLACES YOU GO TO </h3>
+	  
+		<div class="form-group form-group-lg">
+			<label>Tap a place type:</label>
+			<div class="col-sm-12">
+				<div class="" id="btn-group"  role="group" aria-label="...">
+					<input type="button" class="btn btn-success btn-lg poi" value="HOME">
+					<input type="button" class="btn btn-success btn-lg poi" value="WORK">
+					<input type="button" class="btn btn-success btn-lg poi" value="SHOPPING">
+					<input type="button" class="btn btn-success btn-lg poi" value="SCHOOL">
+					<input type="button" class="btn btn-success btn-lg poi" value="RECREATION">
+					<input type="button" class="btn btn-success btn-lg poi" value="HEALTHCARE">
+				</div>
+			</div>
+		</div>
+	
+		<div class="form-group form-group-lg">
+			<label>Drop a marker on the map:</label>
+			<div id='map_canvas'></div>
+    	</div>
+	  
+		<div class="form-group form-group-lg">
+			<label>Repeat for a few places.  Once you're done: </label>
+			<button id="form-submit" class="btn btn-lg btn-success btn-block" type="submit">SUBMIT</button>
+		</div>
 
-        <h4>Locate a few places that matter to you and drop a marker for each on the map</h4>
-
-        <div class="form-group form-group-lg">
-       <label class="col-sm-2 control-label" for="formGroupInputLarge">Places:</label>
-        <div class="col-sm-8">     
-        <div class="" id="btn-group"  role="group" aria-label="...">
-          <input type="button" class="btn btn-success btn-lg poi" value="home">
-          <input type="button" class="btn btn-success btn-lg poi" value="work">
-          <input type="button" class="btn btn-success btn-lg poi" value="shop">
-          <input type="button" class="btn btn-success btn-lg poi" value="school">
-          <input type="button" class="btn btn-success btn-lg poi" value="friends">
-          <input type="button" class="btn btn-success btn-lg poi" value="family">
-          <input type="button" class="btn btn-success btn-lg poi" value="leisure">
-          <input type="button" class="btn btn-success btn-lg poi" value="doctor">
-        </div>
-        </div>
-        </div>
-
-        <div class="form-group form-group-lg">
-
-       <label class="col-sm-2 control-label" for="formGroupInputLarge">Typical Time:</label>
-        <div class="col-sm-8">    
-        <div class="" id="btn-group"  role="group2" aria-label="...">
-          <input type="button" class="btn btn-info btn-lg time" value="morning or afternoon">
-          <input type="button" class="btn btn-info btn-lg time" value="mid-day">
-          <input type="button" class="btn btn-info btn-lg time" value="night">
-          <input type="button" class="btn btn-info btn-lg time" value="weekend">
-        </div>
-        </div>
-        </div>
-
-        <div class="form-group form-group-lg">
-        <label class="col-sm-2 control-label" for="formGroupInputLarge">Travel Mode:</label>
-        <div class="col-sm-8">  
-        <div class="" id="btn-group"  role="group3" aria-label="...">
-          <input type="button" class="btn btn-primary btn-lg  mode" value="train/bus">
-          <input type="button" class="btn btn-primary btn-lg  mode" value="car">
-          <input type="button" class="btn btn-primary btn-lg  mode" value="bicycle">
-          <input type="button" class="btn btn-primary btn-lg  mode" value="foot">
-        </div>
-        </div>
-        </div>
-
-        <div class="form-group form-group-lg">
-          <label class="col-sm-2 control-label" for="formGroupInputLarge">Usual Travel Time from Home:</label>
-            <div class="col-sm-8">
-                <input type="button" class="btn btn-warning btn-lg  mode" value="<15min">
-                <input type="button" class="btn btn-warning btn-lg  mode" value="15~30min">
-                <input type="button" class="btn btn-warning btn-lg  mode" value="30min~1hr">
-                <input type="button" class="btn btn-warning btn-lg  mode" value="1hr~1hr30min">
-                <input type="button" class="btn btn-warning btn-lg  mode" value=">1hr30min">
-
-            <!--   <input type="range" min:10, max:120, step=10, style="width: 230px" class="duration form-control input-lg">  -->
-          </div>
-        </div>
-     
-      
-        <div class="form-group form-group-lg">
-          <label class="col-sm-2 control-label" for="formGroupInputLarge">What's challenging about your travel?</label>
-          <div class="col-sm-8"> 
-          <input class="form-control input-lg" id="painTag" type="text" name="painTag">
-          </div>
-        </div>
-       
-        <div class="form-group form-group-lg">
-          <label class="col-sm-2 control-label" for="formGroupInputLarge">Drop a marker representing the place you identified below or enter a street intersection:</label>
-          <div class="col-sm-8"> 
-            <input class="form-control input-lg" id="addressTag" type="text" name="addressTag">
-          </div>
-        </div>
-  
-      <div id='map_canvas' style="width:90%"></div>
-      <br>
-
-      <h3> 3. PRIOR KNOWLEDGE  <small>(Sample Questions) </small></h3>
-      <br>
-      <h4 for="dataViz"> Bus Rapid Transit (BRT) and Data Visualization </h4> <br>
-      
-      
-        <div class="form-group form-group-lg">
-          <label class="col-sm-4">On a scale of 1-5, how familiar are you with digital graphical representation of information and data?</label>
-          <div class="col-sm-6"> 
-            <input class="" id="" type="range">
-          </div>
-        </div>    
-
-        <div class="form-group form-group-lg">
-          <label class="col-sm-4">Are you familiar with the concept of Bus Rapid Transit (yes/no) ?  if so, name four components. </label>
-          <div class="col-sm-6"> 
-             <input type="button" class="btn btn-warning btn-lg  mode" value="Yes">
-             <input type="button" class="btn btn-warning btn-lg  mode" value="No">
-             <br>         
-             <input class="form-control" id="initials" type="text" name="initials"  >
-
-          </div>
-          </div>
-        </div>    
-
-    <!--     <div class="form-group form-group-lg">
-          <label class="col-sm-4">Reading Maps</label>
-          <div class="col-sm-6"> 
-            <input class="" id="" type="range">
-          </div>
-        </div>
-
-        <div class="form-group form-group-lg">
-          <label class="col-sm-4">Data Visualization</label>
-          <div class="col-sm-6"> 
-            <input class="" id="" type="range">
-          </div>
-        </div>
-
-        <div class="form-group form-group-lg">
-          <label class="col-sm-4">Transportation Planning</label>
-          <div class="col-sm-6"> 
-            <input class="" id="" type="range">
-          </div>
-        </div> -->
- 
-
-      <br>
-
-      <h4 for="dataViz"> COMMUNITY MEETINGS</h4> <br>
-
-        <div class="form-group form-group-lg">
-          <label class="col-sm-4" for="formGroupInputLarge">Over the past year, how many community meetings have you attended?</label>
-            <div class="col-sm-8">
-                <input type="button" class="btn btn-warning btn-lg  mode" value="None">
-                <input type="button" class="btn btn-warning btn-lg  mode" value="1~3">
-                <input type="button" class="btn btn-warning btn-lg  mode" value="3~10">
-                <input type="button" class="btn btn-warning btn-lg  mode" value=">10">         
-          </div>
-        </div>
-         <div class="form-group form-group-lg">
-          <label class="col-sm-4" for="formGroupInputLarge">Of the community meetings you attended, in how many you spoke and shared your opinion?</label>
-            <div class="col-sm-8">
-                <input type="button" class="btn btn-warning btn-lg  mode" value="None">
-                <input type="button" class="btn btn-warning btn-lg  mode" value="1~3">
-                <input type="button" class="btn btn-warning btn-lg  mode" value="3~10">
-                <input type="button" class="btn btn-warning btn-lg  mode" value=">10">         
-          </div>
-        </div>
-        <br>
-        <div class="form-group form-group-lg">
-          <label class="col-sm-4 ">On a scale of 1-5, to what extent do you agree that community meetings are a venue for constructive discussions?</label>
-          <div class="col-sm-6"> 
-            <input class="" id="" type="range">
-          </div>
-        </div>
-<!-- 
-        <div class="form-group form-group-lg">
-          <label class="col-sm-4">I believe that community meetings are a venue for constructive discussion about planning decisions.</label>
-          <div class="col-sm-6"> 
-            <input class="" id="" type="range">
-          </div>
-        </div>
-
-        <div class="form-group form-group-lg">
-          <label class="col-sm-4">I believe that decisions about the city/neighborhoods are better made in the hands of experts or professional who have the technical knowledge.</label>
-          <div class="col-sm-6"> 
-            <input class="" id="" type="range">
-          </div>
-        </div> -->
-
-        <br>
-        <br>
-      <span class=""> 
-        <button id="form-submit" class="btn btn-lg btn-success btn-block" type="submit">SUBMIT</button>
-      </span>
-      
-
-      </form>
-      <br>
+    </form>
+	</div>
+	  
 
 <!-- Form Script -->
       
@@ -343,7 +155,8 @@
             var mapOptions = {
               zoom: 13,
               center: new google.maps.LatLng(42.3385, -71.0809),
-              mapTypeId: google.maps.MapTypeId.ROADMAP
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+			  scrollwheel: false
             };
             var map = new google.maps.Map(document.getElementById('map_canvas'),
                 mapOptions);
