@@ -193,9 +193,9 @@
               console.log(e.latLng);
               // markers.push({"lat": e.latLng.A, "lng": e.latLng.F, "poiTag": $("#poiTag").val()});
 
-              markers.push({"lat": e.latLng.H, "lng": e.latLng.L, "poiTag": poiTag, "timeTag": timeTag, "modeTag": modeTag});
+              markers.push({"lat": e.latLng.J, "lng": e.latLng.M, "poiTag": poiTag, "timeTag": timeTag, "modeTag": modeTag});
 
-                console.log(markers);
+              console.log(markers);
             });
         }
 
@@ -207,9 +207,9 @@
             });
 			google.maps.event.addListener(marker, 'dragstart', function(e) { 
 				for(var i=0; i<markers.length; i++) {
-					if(markers[i].lat == marker.position.H) {
+					if(markers[i].lat == marker.position.J) {
 						console.log(markers[i].lat + ' ' + markers[i].lng);
-						if(markers[i].lng == marker.position.L){
+						if(markers[i].lng == marker.position.M){
 							markers.splice(i, 1);
 							break;
 						}
@@ -217,13 +217,13 @@
 				}
 			});
 			google.maps.event.addListener(marker, 'dragend', function(e) { 
-				markers.push({"lat": e.latLng.H, "lng": e.latLng.L, "poiTag": poiTag, "timeTag": timeTag, "modeTag": modeTag});
+				markers.push({"lat": e.latLng.J, "lng": e.latLng.M, "poiTag": poiTag, "timeTag": timeTag, "modeTag": modeTag});
 			});
 			google.maps.event.addListener(marker, 'click', function() { 
 			    for(var i=0; i<markers.length; i++) {
-					if(markers[i].lat == marker.position.H) {
+					if(markers[i].lat == marker.position.J) {
 						console.log(markers[i].lat + ' ' + markers[i].lng);
-						if(markers[i].lng == marker.position.L){
+						if(markers[i].lng == marker.position.M){
 							markers.splice(i, 1);
 							break;
 						}
